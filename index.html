@@ -1,0 +1,1390 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Paolo Gio G. Espiritu | Portfolio</title>
+        <meta name="description" content="Professional portfolio showcasing work, credentials, and projects">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            navy: "#0a192f",
+                            "navy-light": "#112240",
+                            "navy-lighter": "#233554",
+                            accent: "#38bdf8",
+                            "accent-dark": "#2dd4bf"
+                        },
+                        fontFamily: {
+                            inter: ['Inter', 'sans-serif']
+                        },
+                        animation: {
+                            'gradient': 'gradient 3s linear infinite',
+                            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                            'float': 'float 3s ease-in-out infinite',
+                        },
+                        keyframes: {
+                            gradient: {
+                                '0%, 100%': { backgroundPosition: '0% 50%' },
+                                '50%': { backgroundPosition: '100% 50%' },
+                            },
+                            float: {
+                                '0%, 100%': { transform: 'translateY(0px)' },
+                                '50%': { transform: 'translateY(-10px)' },
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            * {
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, #38bdf8, #2dd4bf);
+                border-radius: 5px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: linear-gradient(180deg, #2dd4bf, #38bdf8);
+            }
+
+            /* Section Active State */
+            .section-active {
+                color: #38bdf8 !important;
+                position: relative;
+            }
+            .section-active::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, #38bdf8, #2dd4bf);
+                border-radius: 2px;
+            }
+
+            /* Skill Cards */
+            .skill-card {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                background: white;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+            .skill-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+                transform: rotate(45deg);
+                animation: shine 3s infinite;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            .skill-card:hover::before {
+                opacity: 1;
+            }
+            @keyframes shine {
+                0% { transform: translateX(-100%) rotate(45deg); }
+                100% { transform: translateX(100%) rotate(45deg); }
+            }
+            .skill-card:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .skill-card ul {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.3s ease-out;
+            }
+            .skill-card:hover ul {
+                max-height: 500px;
+                opacity: 1;
+                margin-top: 1rem;
+            }
+
+            /* Gradient Text */
+            .gradient-text {
+                background: linear-gradient(90deg, #38bdf8, #2dd4bf, #38bdf8);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: gradient 3s linear infinite;
+            }
+
+            /* Timeline */
+            .timeline-dot {
+                transition: all 0.3s ease;
+            }
+            .timeline-item:hover .timeline-dot {
+                transform: scale(1.5);
+                background: linear-gradient(135deg, #38bdf8, #2dd4bf);
+            }
+
+            /* Social Links */
+            .social-link {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .social-link:hover {
+                transform: translateY(-3px) scale(1.1);
+                background: linear-gradient(135deg, #38bdf8, #2dd4bf) !important;
+                color: #0a192f !important;
+            }
+
+            /* Loading Animation */
+            .loading {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 3px solid rgba(255,255,255,.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 1s ease-in-out infinite;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+
+            /* Certification Cards */
+            .cert-card {
+                transition: all 0.3s ease;
+                background: white;
+                position: relative;
+                overflow: hidden;
+            }
+            .cert-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+            .cert-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, #38bdf8, #2dd4bf, #38bdf8);
+                transform: translateX(-100%);
+                animation: borderFlow 3s infinite;
+            }
+            @keyframes borderFlow {
+                0% { transform: translateX(-100%); }
+                50% { transform: translateX(100%); }
+                100% { transform: translateX(100%); }
+            }
+
+            /* Quick Facts Cards */
+            .fact-card {
+                transition: all 0.3s ease;
+                background: rgba(17, 34, 64, 0.5);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(56, 189, 248, 0.2);
+            }
+            .fact-card:hover {
+                transform: translateX(8px);
+                border-color: #38bdf8;
+                background: rgba(35, 53, 84, 0.8);
+            }
+
+            /* Career Highlight Cards - New Design */
+            .highlight-card {
+                transition: all 0.3s ease;
+                background: rgba(17, 34, 64, 0.3);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(56, 189, 248, 0.15);
+                border-left: 4px solid #38bdf8;
+            }
+            .highlight-card:hover {
+                transform: translateX(8px) translateY(-4px);
+                border-color: rgba(56, 189, 248, 0.4);
+                background: rgba(35, 53, 84, 0.6);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Career Highlight Badge */
+            .highlight-badge {
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(45, 212, 191, 0.2) 100%);
+                border: 1px solid rgba(56, 189, 248, 0.3);
+                color: #38bdf8;
+                font-size: 0.7rem;
+                font-weight: 600;
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                display: inline-block;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* Research Publication Cards */
+            .publication-card {
+                transition: all 0.3s ease;
+                background: white;
+                border-left: 4px solid #38bdf8;
+                position: relative;
+                overflow: hidden;
+            }
+            .publication-card:hover {
+                transform: translateX(8px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Education Cards (Navy Theme) */
+            .education-card {
+                transition: all 0.3s ease;
+                background: #112240;
+                border: 1px solid #233554;
+            }
+            .education-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Original Hero Section Styles */
+            #home .gradient-text.animated-gradient {
+                background: linear-gradient(90deg, #38bdf8, #2dd4bf, #38bdf8);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: gradient-move 3s linear infinite;
+            }
+
+            @keyframes gradient-move {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            /* Highlight Box */
+            .highlight-box {
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(45, 212, 191, 0.1) 100%);
+                border-left: 4px solid #38bdf8;
+            }
+
+            /* Career Highlights Section Divider */
+            .section-divider {
+                background: linear-gradient(90deg, transparent, #38bdf8, #2dd4bf, #38bdf8, transparent);
+                height: 1px;
+                width: 100%;
+                opacity: 0.3;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50 text-gray-800 font-inter overflow-x-hidden">
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="fixed inset-0 bg-navy z-[100] flex items-center justify-center transition-opacity duration-500">
+            <div class="text-center">
+                <div class="w-20 h-20 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p class="text-white text-xl font-semibold gradient-text">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-lg">
+            <nav class="container mx-auto px-4 py-3">
+                <div class="flex items-center justify-between">
+                    <!-- Logo/Brand -->
+                    <a href="#home" class="text-2xl font-bold gradient-text md:hidden">PGE</a>
+                    <div class="hidden md:block w-6"></div>
+
+                    <!-- Desktop Navigation -->
+                    <ul id="nav-list" class="hidden md:flex space-x-8 text-navy font-medium"></ul>
+
+                    <!-- Desktop Social Icons -->
+                    <div class="hidden md:flex items-center space-x-2">
+                        <a href="https://github.com/pgEspiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fab fa-github text-sm"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/pgespiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="https://www.credly.com/users/pgespiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fas fa-certificate text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-navy text-white flex items-center justify-center">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                    <ul id="mobile-nav-list" class="space-y-3 text-navy font-medium"></ul>
+                    <div class="flex space-x-3 mt-4 pt-4 border-t border-gray-200">
+                        <a href="https://github.com/pgEspiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/pgespiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.credly.com/users/pgespiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                            <i class="fas fa-certificate"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero Section (Original) -->
+            <section id="home" class="py-24 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-16">
+                        
+                        <div class="md:w-3/5 text-left">
+                            <span class="text-accent font-bold tracking-widest uppercase text-sm">Hello, I'm</span>
+                            <h1 class="text-5xl md:text-7xl font-extrabold text-navy mt-2 mb-6 leading-tight">
+                                <span class="gradient-text animated-gradient">Paolo Gio G. Espiritu</span>
+                            </h1>
+
+                            <div class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">
+                                <p class="mb-4">
+                                    I specialize in <span class="font-semibold text-navy">ICT project coordination</span>, 
+                                    <span class="font-semibold text-navy">cloud computing</span>, 
+                                    <span class="font-semibold text-navy">cybersecurity foundations</span>, 
+                                    and <span class="font-semibold text-navy">data-driven reporting</span>.
+                                </p>
+                                <p>
+                                    I enjoy transforming complex requirements into 
+                                    <span class="font-medium text-gray-700">organized processes</span>, 
+                                    <span class="font-medium text-gray-700">clear documentation</span>, 
+                                    and <span class="font-medium text-gray-700">scalable digital solutions</span> 
+                                    that support informed decision-making.
+                                </p>
+                            </div>
+
+                            <div class="flex space-x-4">
+                                <a href="#contact" class="bg-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-navy-lighter transition-all transform hover:-translate-y-1">
+                                    Get In Touch
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="md:w-2/5 flex justify-center">
+                            <div class="relative group">
+                                <div class="absolute -inset-4 bg-accent rounded-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                                
+                                <div class="w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                                <img src="images/profile.jpg" 
+                                     alt="Paolo Gio G. Espiritu" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Paolo+Gio+Espiritu&size=400&length=2&background=0a192f&color=38bdf8&bold=true';">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section - UPDATED with Career Highlights -->
+            <section id="profile" class="py-20 bg-navy text-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">Get to know me</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">About Me</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    </div>
+
+                    <div class="flex flex-col gap-12">
+                        <!-- Professional Summary -->
+                        <div class="w-full">
+                            <div class="bg-navy-light/50 backdrop-blur-sm p-8 md:p-10 rounded-2xl border border-navy-lighter">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                    <i class="fas fa-user-tie text-accent mr-3 text-3xl"></i>
+                                    <span class="gradient-text">Professional Summary</span>
+                                </h3>
+                                <div class="space-y-6 text-gray-300 leading-relaxed text-lg">
+                                    <p class="leading-relaxed">
+                                        <span class="text-white font-semibold text-xl">Detail-oriented ICT professional</span> with over ten years of total professional experience, including more than four years in public-sector ICT program and project coordination and extensive private-sector experience in engineering, automation, and technical operations. Has played a significant role in initiatives under the <span class="text-accent font-semibold">Department of Information and Communications Technology (DICT)</span>, supporting nationwide digital transformation, capacity-building, and ICT certification programs.
+                                    </p>
+                                    
+                                    <div class="highlight-box p-6 rounded-lg my-6">
+                                        <p class="italic text-white/90">
+                                            Brings a strong background in industrial automation, systems integration, and technical service delivery, gained through hands-on roles in machinery programming, testing, commissioning, and nationwide technical support. This private-sector foundation enables a practical, systems-oriented approach to ICT program implementation, process improvement, and technical oversight in large-scale public initiatives.
+                                        </p>
+                                    </div>
+                                    
+                                    <p>
+                                        Demonstrates proven capability in process design, data management, workflow automation, and technical documentation, supporting data-driven decision-making and operational efficiency. Experienced in coordinating with regional offices, LGUs, training institutions, service providers, and cross-functional teams to deliver structured, compliant, and scalable ICT solutions.
+                                    </p>
+                                    
+                                    <p>
+                                        Certified in cloud computing, cybersecurity, and productivity technologies, with a solid foundation in systems, programming, and digital infrastructure. Known for delivering well-documented, sustainable solutions aligned with organizational objectives and national digital development goals, while effectively bridging technical execution and program-level coordination.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Facts -->
+                        <div class="w-full lg:w-4/5 mx-auto">
+                            <div class="bg-navy-light/30 backdrop-blur-sm p-8 rounded-2xl border border-navy-lighter">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                    <i class="fas fa-bolt text-accent mr-3 text-3xl animate-pulse"></i>
+                                    <span class="gradient-text">Quick Facts</span>
+                                </h3>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Location -->
+                                    <div class="fact-card p-5 rounded-xl flex items-start">
+                                        <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Location</div>
+                                            <div class="font-semibold text-white text-lg">Quezon City, Philippines 🇵🇭</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Profession -->
+                                    <div class="fact-card p-5 rounded-xl flex items-start">
+                                        <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-briefcase text-accent text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Profession</div>
+                                            <div class="font-semibold text-white text-lg">ICT Professional | Project & Program Coordinator | Cloud & Cybersecurity Certified</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Total Experience -->
+                                    <div class="fact-card p-5 rounded-xl flex items-start">
+                                        <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-clock text-accent text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Total Experience</div>
+                                            <div class="font-semibold text-white text-lg">9+ years total professional experience</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Public Sector Experience -->
+                                    <div class="fact-card p-5 rounded-xl flex items-start">
+                                        <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                            <i class="fas fa-building text-accent text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Public Sector</div>
+                                            <div class="font-semibold text-white text-lg">4+ years supporting national ICT programs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Career Highlights - NEW SECTION -->
+                        <div class="w-full">
+                            <div class="relative">
+                                <!-- Section Divider -->
+                                <div class="section-divider my-8"></div>
+                                
+                                <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                    <i class="fas fa-trophy text-accent mr-3 text-3xl"></i>
+                                    <span class="gradient-text">Career Highlights</span>
+                                </h3>
+
+                                <div class="space-y-4">
+                                    <!-- AWS re/Start Program Scholar -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">Nov 2024 – Feb 2025</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">Scholar</span>
+                                            <span class="highlight-badge bg-purple-500/20 border-purple-500/30 text-purple-400">Batch Topnotcher</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">AWS re/Start Program Scholar – Cohort PHMan26</h4>
+                                        <p class="text-gray-300">Batch topnotcher of a 300-hour intensive cloud training program, sponsored by Chevron-Caltex, Edukasyon.ph, and AWS Siklab.</p>
+                                    </div>
+
+                                    <!-- Google Get Certified Program -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2024 & 2025 Editions</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">Scholar</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">Google Get Certified Program - Cohort ACE09-GETCERT/2024.11.27 & PCA06-GETCERT_Q3_2025</h4>
+                                        <p class="text-gray-300 mb-2">Recipient of sponsored certification vouchers for Google Associate Cloud Engineer and Professional Cloud Architect.</p>
+                                        <p class="text-gray-300">Served as Lead Technical Focal for the implementation of the Local and National Digital Challenge under DICT (2023–2025).</p>
+                                    </div>
+
+                                    <!-- Lead Focal Person – ICT User Certification Examination -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2023–2025</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">DICT - ILCDB</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">Lead Focal Person – ICT User Certification Examination</h4>
+                                        <p class="text-gray-300">Assessed, evaluated, and certified government workforce competencies under the ILCDB certification program.</p>
+                                    </div>
+
+                                    <!-- Technical Group Member -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2023–2025</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">DICT - ILCDB</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">Technical Group Member – Nationwide ICT Examinations</h4>
+                                        <p class="text-gray-300">Provided technical support for the nationwide implementation of ICT Diagnostic and ICT Proficiency Examinations of the ILCDB.</p>
+                                    </div>
+
+                                    <!-- Lead Technical Focal Person - Local & National Digital Challenge -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2023–2025</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">DICT - ILCDB</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2"> Lead Technical Person – DICT Local and National Digital Challenge</h4>
+                                        <p class="text-gray-300">Served as Lead Technical Focal for the implementation of the Local and National Digital Challenge under DICT.</p>
+                                    </div>
+
+                                    <!-- Certified & Lead Trainer -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2024</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">DICT - ILCDB</span>
+                                            <span class="highlight-badge bg-orange-500/20 border-orange-500/30 text-orange-400">Lead Trainer</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">Certified & Lead Trainer – Coding for Kids Program</h4>
+                                        <p class="text-gray-300">Delivered LEGO Robotics and Minecraft coding training under DICT programs in partnership with Manila Bulletin and the LGU of Valenzuela.</p>
+                                    </div>
+
+                                    <!-- Industrial Automation Programmer & Service Engineer -->
+                                    <div class="highlight-card p-6 rounded-xl">
+                                        <div class="flex flex-wrap items-start gap-3 mb-3">
+                                            <span class="highlight-badge">2016-2021</span>
+                                            <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">Programmer</span>
+                                            <span class="highlight-badge bg-orange-500/20 border-orange-500/30 text-orange-400">Service Engineer</span>
+                                            <span class="highlight-badge bg-purple-500/20 border-purple-500/30 text-purple-400">Major Client</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-white mb-2">Industrial Automation Programmer & Service Engineer</h4>
+                                        <p class="text-gray-300 mb-2">Served major clients including <span class="text-accent">Unilever, Nutri-Asia, Silver Swan, San Miguel Yamamura (Cebu), Max Glow, and DOLE</span>.</p>
+                                        <p class="text-gray-300">Designed, programmed, and automated packaging machinery such as bottling lines, stand-up pouch fillers, bottle cappers, depalletizers, rinsers, and cartoning systems while with Elgie and Solutionpack Machinery Malaysia.</p>
+                                    </div>
+
+                                    <!-- DOST-SEI Scholar & Licensed Electronics Engineer -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="highlight-card p-6 rounded-xl">
+                                            <div class="flex items-start">
+                                                <div class="w-10 h-10 rounded-full bg-navy-lighter flex items-center justify-center mr-3 flex-shrink-0">
+                                                    <i class="fas fa-flask text-accent"></i>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-white mb-1">DOST-SEI Scholar</h4>
+                                                    <p class="text-sm text-gray-300">Awarded a scholarship under the Department of Science and Technology – Science Education Institute (2013–2014)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="highlight-card p-6 rounded-xl">
+                                            <div class="flex items-start">
+                                                <div class="w-10 h-10 rounded-full bg-navy-lighter flex items-center justify-center mr-3 flex-shrink-0">
+                                                    <i class="fas fa-microchip text-accent"></i>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-white mb-1">Licensed Electronics Engineer</h4>
+                                                    <p class="text-sm text-gray-300">Licensed Electronics Engineer (2013–Present)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">What I bring to the table</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-navy">Skills & Expertise</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                            Comprehensive skill sets spanning project management, cloud computing, cybersecurity, 
+                            data analysis, AI, programming, and technical training.
+                        </p>
+                    </div>
+                    <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </div>
+            </section>
+
+            <!-- Work Experience -->
+            <section id="work" class="py-20 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">My journey</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-navy">Work Experience</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    </div>
+                    <div id="timeline" class="max-w-4xl mx-auto relative"></div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section id="education" class="py-20 bg-navy text-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">Academic background</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">Education</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    </div>
+                    <div id="education-grid" class="max-w-3xl mx-auto space-y-6"></div>
+                </div>
+            </section>
+
+            <!-- Research Publications -->
+            <section id="publications" class="py-20 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">Research & Publications</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-navy">Published Works</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                            Peer-reviewed publications and research papers in international journals.
+                        </p>
+                    </div>
+                    <div id="publications-grid" class="max-w-4xl mx-auto space-y-4"></div>
+                </div>
+            </section>
+
+            <!-- Credentials -->
+            <section id="credentials" class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">Verified expertise</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-navy">Credentials</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                            Professional certifications and qualifications in cloud computing, cybersecurity, 
+                            and productivity technologies.
+                        </p>
+                    </div>
+                    <div id="certifications-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                </div>
+            </section>
+
+            <!-- Contact - SIMPLIFIED without form -->
+            <section id="contact" class="py-20 bg-navy">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-accent font-semibold tracking-wider uppercase">Get in touch</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">Contact Me</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                        <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                            Have a project in mind or want to discuss opportunities? Feel free to reach out through any of these channels.
+                        </p>
+                    </div>
+
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Contact Information - Centered and Simplified -->
+                        <div class="bg-navy-light/50 backdrop-blur-sm p-10 rounded-2xl border border-navy-lighter">
+                            <h3 class="text-2xl font-bold mb-8 text-center flex items-center justify-center">
+                                <i class="fas fa-paper-plane text-accent mr-3"></i>
+                                <span class="gradient-text">Let's Connect</span>
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                                <!-- Email -->
+                                <div class="fact-card p-6 rounded-xl text-center group">
+                                    <div class="w-16 h-16 rounded-full bg-navy-lighter flex items-center justify-center mx-auto mb-4 group-hover:bg-accent transition-colors">
+                                        <i class="fas fa-envelope text-accent text-2xl group-hover:text-navy transition-colors"></i>
+                                    </div>
+                                    <h4 class="text-gray-400 text-sm mb-2">EMAIL</h4>
+                                    <a href="mailto:paologioespiritu@gmail.com" class="text-white font-semibold hover:text-accent transition-colors">
+                                        paologioespiritu@gmail.com
+                                    </a>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="fact-card p-6 rounded-xl text-center group">
+                                    <div class="w-16 h-16 rounded-full bg-navy-lighter flex items-center justify-center mx-auto mb-4 group-hover:bg-accent transition-colors">
+                                        <i class="fas fa-phone text-accent text-2xl group-hover:text-navy transition-colors"></i>
+                                    </div>
+                                    <h4 class="text-gray-400 text-sm mb-2">PHONE</h4>
+                                    <a href="tel:+639398058059" class="text-white font-semibold hover:text-accent transition-colors">
+                                        (+63) 939 805 8059
+                                    </a>
+                                </div>
+
+                                <!-- Location -->
+                                <div class="fact-card p-6 rounded-xl text-center group">
+                                    <div class="w-16 h-16 rounded-full bg-navy-lighter flex items-center justify-center mx-auto mb-4 group-hover:bg-accent transition-colors">
+                                        <i class="fas fa-map-marker-alt text-accent text-2xl group-hover:text-navy transition-colors"></i>
+                                    </div>
+                                    <h4 class="text-gray-400 text-sm mb-2">LOCATION</h4>
+                                    <p class="text-white font-semibold">
+                                        Quezon City, Philippines
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="border-t border-navy-lighter pt-8">
+                                <h4 class="text-xl font-bold mb-6 text-center gradient-text">Follow Me</h4>
+                                <div id="social-links" class="flex justify-center space-x-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-navy text-white py-12 border-t border-navy-lighter">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center md:text-left mb-6 md:mb-0">
+                        <div class="text-2xl font-bold gradient-text mb-2">Paolo Gio Espiritu</div>
+                        <p class="text-gray-400">ICT Professional & Industrial Automation Specialist</p>
+                    </div>
+                    <ul id="footer-nav" class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0"></ul>
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400">
+                            &copy; <span id="current-year"></span> All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-accent text-navy rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-accent-dark hover:scale-110 z-50">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            // Data Layer - UPDATED navigation items (removed Projects)
+            const navigationItems = [
+                { label: "Home", href: "#home", icon: "fas fa-home" },
+                { label: "Profile", href: "#profile", icon: "fas fa-user" },
+                { label: "Skills", href: "#skills", icon: "fas fa-cogs" },
+                { label: "Work", href: "#work", icon: "fas fa-briefcase" },
+                { label: "Education", href: "#education", icon: "fas fa-graduation-cap" },
+                { label: "Publications", href: "#publications", icon: "fas fa-book-open" },
+                { label: "Credentials", href: "#credentials", icon: "fas fa-certificate" },
+                { label: "Contact", href: "#contact", icon: "fas fa-envelope" }
+            ];
+
+            // Quick Facts array (keeping for reference)
+            const quickFacts = [
+                { label: "Location", value: "Quezon City, Philippines 🇵🇭", icon: "fas fa-map-marker-alt" },
+                { label: "Profession", value: "ICT Professional | Project & Program Coordinator | Cloud & Cybersecurity Certified", icon: "fas fa-briefcase" },
+                { label: "Experience", value: "9+ years total professional experience", icon: "fas fa-clock" },
+                { label: "Public Sector", value: "4+ years supporting national ICT programs", icon: "fas fa-building" }
+            ];
+
+            const skills = [
+                {
+                    category: "Project & Program Coordination",
+                    items: [
+                        "Project Planning and Execution",
+                        "Stakeholder & Inter-Agency Coordination",
+                        "Process Design and Standardization",
+                        "Administrative and Technical Oversight",
+                        "Monitoring and Evaluation"
+                    ],
+                    icon: "fas fa-project-diagram",
+                    color: "from-blue-500 to-cyan-500"
+                },
+                {
+                    category: "Cloud & Cybersecurity",
+                    items: [
+                        "AWS, Google Cloud, Oracle Cloud",
+                        "Cybersecurity Fundamentals",
+                        "Cybersecurity Risk Management",
+                        "Secure Systems Documentation",
+                        "SOC Concepts & CERT Operations"
+                    ],
+                    icon: "fas fa-cloud",
+                    color: "from-purple-500 to-pink-500"
+                },
+                {
+                    category: "Data Analysis & Automation",
+                    items: [
+                        "Data Quality Assurance",
+                        "Spreadsheet Automation",
+                        "Statistical Data Handling",
+                        "Data Visualization",
+                        "Process Optimization"
+                    ],
+                    icon: "fas fa-chart-line",
+                    color: "from-green-500 to-emerald-500"
+                },
+                {
+                    category: "Technical Writing",
+                    items: [
+                        "Standard Operating Procedures",
+                        "Technical Manuals & Playbooks",
+                        "Template Development",
+                        "Project Reports",
+                        "Research Publications"
+                    ],
+                    icon: "fas fa-file-alt",
+                    color: "from-yellow-500 to-orange-500"
+                },
+                {
+                    category: "AI & Productivity Tools",
+                    items: [
+                        "Prompt Engineering",
+                        "ChatGPT, Gemini, DeepSeek",
+                        "Canva AI & Graphic Design",
+                        "Microsoft 365 Suite",
+                        "Google Workspace",
+                        "AutoCad"
+                    ],
+                    icon: "fas fa-robot",
+                    color: "from-red-500 to-rose-500"
+                },
+                {
+                    category: "Programming",
+                    items: [
+                        "Linux System Administration",
+                        "Python Programming",
+                        "Java Programming",
+                        "SQL",
+                        "Flow Charts and Pseudocodes",
+                        "PLC and HMI Programming"
+                    ],
+                    icon: "fas fa-laptop-code",
+                    color: "from-indigo-500 to-blue-500"
+                },
+                {
+                    category: "Training & Development",
+                    items: [
+                        "Python and Java Programming",
+                        "Graphic Design using Canva",
+                        "Networking",
+                        "Office Productivity Use",
+                        "Cloud Technologies Training",
+                        "Cybersecurity Awareness",
+                        "STEM Education (LEGO, Minecraft)"
+                    ],
+                    icon: "fas fa-chalkboard-teacher",
+                    color: "from-indigo-500 to-purple-500"
+                }
+            ];
+
+            const education = [
+                {
+                    degree: "Master of Engineering Management",
+                    school: "Nueva Ecija University of Science and Technology",
+                    period: "Aug 2022 – Jan 2025",
+                    icon: "fas fa-graduation-cap"
+                },
+                {
+                    degree: "B.S. in Electronics Engineering",
+                    school: "Polytechnic University of the Philippines",
+                    period: "Jun 2008 – May 2013",
+                    icon: "fas fa-microchip"
+                }
+            ];
+
+            // Publications array
+            const publications = [
+                {
+                    title: "Project Management 4.0: A Case Study of Project Management's Remote Collaboration in Digital Era",
+                    journal: "International Journal of Progressive Research in Science and Engineering",
+                    date: "May 2024",
+                    doi: "N/A",
+                    link: "https://journal.ijprse.com/index.php/ijprse/article/view/1050",
+                    icon: "fas fa-file-alt"
+                },
+                {
+                    title: "Digital Transformation Adoption in the Local Government Unit (LGU) of the Science City of Muñoz, Nueva Ecija: The Challenges and Best Practices",
+                    journal: "The Quest Journal",
+                    date: "Dec 2023",
+                    doi: "https://doi.org/10.60008/thequest.v2i3.137",
+                    link: "https://neust.journalintellect.com/quest/article/view/137",
+                    icon: "fas fa-university"
+                },
+                {
+                    title: "Navigating The Regulatory Landscape: Guiding the Development and Use of Emerging Technologies in The Philippines",
+                    journal: "International Journal of Progressive Research in Science and Engineering",
+                    date: "Nov 2023",
+                    doi: "N/A",
+                    link: "https://journal.ijprse.com/index.php/ijprse/article/view/996",
+                    icon: "fas fa-balance-scale"
+                },
+                {
+                    title: "Navigating Cybersecurity Challenges in The Era of Digital Transformation: Threats and Mitigation Strategies in The Philippines",
+                    journal: "International Journal of Progressive Research in Science and Engineering",
+                    date: "Nov 2023",
+                    doi: "N/A",
+                    link: "https://journal.ijprse.com/index.php/ijprse/article/view/994",
+                    icon: "fas fa-shield-alt"
+                }
+            ];
+
+            const workExperience = [
+                {
+                    company: "DICT",
+                    position: "Project Development Officer II",
+                    period: "2021 – Present",
+                    points: [
+                        "Coordinate nationwide ICT competency assessments and capacity-building programs",
+                        "Manage stakeholder partnerships with LGUs, training institutions, and industry experts",
+                        "Develop and maintain certification requirements and compliance documentation",
+                        "Lead research initiatives on digital transformation and cybersecurity"
+                    ],
+                    icon: "fas fa-landmark"
+                },
+                {
+                    company: "Solutionpack Machinery Inc.",
+                    position: "Service Engineer",
+                    period: "2019 – 2020",
+                    points: [
+                        "Led testing and commissioning of industrial packaging machines",
+                        "Supervised local technical teams and coordinated with international partners",
+                        "Conducted Factory Acceptance Testing (FAT) for clients"
+                    ],
+                    icon: "fas fa-cogs"
+                },
+                {
+                    company: "Elgie Packaging Equipment Inc.",
+                    position: "Programmer (Automation)",
+                    period: "2016 – 2018",
+                    points: [
+                        "Developed and optimized PLC/HMI applications",
+                        "Designed electrical control layouts and managed hardware integration",
+                        "Performed rigorous debugging and validation"
+                    ],
+                    icon: "fas fa-laptop-code"
+                },
+                {
+                    company: "Concentrix",
+                    position: "Facilities Management Associate",
+                    period: "2014 – 2015",
+                    points: [
+                        "Managed facility-wide preventive maintenance schedules",
+                        "Led Business Continuity and Disaster Preparedness planning",
+                        "Prepared monthly management reports"
+                    ],
+                    icon: "fas fa-building"
+                }
+            ];
+
+            const certifications = [
+                {
+                    title: "Google Certified Professional Cloud Architect",
+                    issuer: "Google",
+                    year: "Jan 2026 – Jan 2028",
+                    link: "https://www.credly.com/badges/e936c640-b885-4b74-a96f-2de3c7d6aa6d/public_url",
+                    icon: "fab fa-google"
+                },
+                {
+                    title: "Google Certified Educator Level 2",
+                    issuer: "Google",
+                    year: "Dec 2025 – Dec 2028",
+                    link: "https://edu.google.accredible.com/ba4bc8a3-e12e-4264-9e96-26db9ddc956b#acc.cU3Zv2ag",
+                    icon: "fas fa-chalkboard-teacher"
+                },
+                {
+                    title: "Google Certified Educator Level 1",
+                    issuer: "Google",
+                    year: "Dec 2025 – Dec 2028",
+                    link: "https://edu.google.accredible.com/106602e1-ae77-4f57-a7f0-0c44240855e7#acc.eoqg9x1y",
+                    icon: "fas fa-chalkboard-teacher"
+                },
+                {
+                    title: "Fortinet Certified Fundamentals in Cybersecurity",
+                    issuer: "Fortinet",
+                    year: "Nov 2025 – Nov 2027",
+                    link: "https://www.credly.com/badges/8e1afd90-fcf7-44ed-aa10-7fc2bca536ba/public_url",
+                    icon: "fas fa-shield-alt"
+                },
+                {
+                    title: "Google Gemini Certified Educator",
+                    issuer: "Google",
+                    year: "Oct 2025 – Oct 2028",
+                    link: "https://edu.google.accredible.com/a4301fad-0b3f-47ee-a80e-8b5961769a1a?key=9f8d468f8cf1330d5abb4022125c598f6289c2ed3f2862fba42c3b306d196979",
+                    icon: "fas fa-robot"
+                },
+                {
+                    title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations",
+                    issuer: "Oracle",
+                    year: "Oct 2025",
+                    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=17E0774E19D48634EC7777407124D1B2A91C09F6499C45C145153CE7A495D75A",
+                    icon: "fas fa-database"
+                },
+                {
+                    title: "Oracle Cloud Infrastructure 2025 Certified Architect Associate",
+                    issuer: "Oracle",
+                    year: "Sep 2025 – Sep 2028",
+                    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=424D4B72C29D1CF7B6E9F0EDFF926413B93F16DF7E21D0DF3320FCACBB4EE79E",
+                    icon: "fas fa-cloud"
+                },
+                {
+                    title: "Oracle Cloud Infrastructure 2025 Foundation Associate",
+                    issuer: "Oracle",
+                    year: "Jul 2025 – Jul 2028",
+                    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=86DAA1636E477436C98A427929BFB8B84C042502B2447846AC7DB4AC1A552C51",
+                    icon: "fas fa-server"
+                },
+                {
+                    title: "Microsoft Office Specialist: Associate (Word, Excel, PowerPoint)",
+                    issuer: "Microsoft",
+                    year: "Jun 2025",
+                    link: "https://www.credly.com/badges/19d782f1-0010-44dd-985e-b19e4cf67fa8/public_url",
+                    icon: "fab fa-microsoft"
+                },
+                {
+                    title: "MySQL Certified Associate",
+                    issuer: "Oracle",
+                    year: "Jun 2025",
+                    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=1CD5502B327AA4F93BC9AF7EE5806BF805A4C236BB81CDDD38B27FC0F6407CC8",
+                    icon: "fas fa-database"
+                },
+                {
+                    title: "AWS Certified Cloud Practitioner",
+                    issuer: "Amazon",
+                    year: "Apr 2025 – Apr 2028",
+                    link: "https://www.credly.com/badges/a6d9666b-b53a-4a3a-9380-6358905f5e07/public_url",
+                    icon: "fab fa-aws"
+                },
+                {
+                    title: "Google Certified Associate Cloud Engineer",
+                    issuer: "Google",
+                    year: "Feb 2025 – Feb 2028",
+                    link: "https://www.credly.com/badges/1caaf976-4188-433b-a894-bbe50effd8b4/public_url",
+                    icon: "fab fa-google"
+                },
+                {
+                    title: "Computer Proficiency Certification (EDPSE)",
+                    issuer: "EDPSE",
+                    year: "Nov 2023",
+                    link: "#",
+                    icon: "fas fa-laptop"
+                },
+                {
+                    title: "CSARC Certified Trainer in LEGO Robotics using LEGO Education SPIKE Prime",
+                    issuer: "CSARC",
+                    year: "Feb 2023",
+                    link: "https://www.credential.net/65b81674-744e-4adc-8be7-f7930d7198e7#acc.NFuhibYy",
+                    icon: "fas fa-robot"
+                },
+                {
+                    title: "CSARC Certified Trainer in Minecraft Education",
+                    issuer: "CSARC",
+                    year: "Feb 2023",
+                    link: "https://www.credential.net/cfdfb764-9764-45ec-a2bc-cf254ddd3153#acc.ZIpsiRJu",
+                    icon: "fas fa-gamepad"
+                }
+            ];
+
+            const socialLinks = [
+                { platform: "GitHub", url: "https://github.com/pgEspiritu", icon: "fab fa-github" },
+                { platform: "LinkedIn", url: "https://linkedin.com/in/pgespiritu", icon: "fab fa-linkedin" },
+                { platform: "Credly", url: "https://www.credly.com/users/pgespiritu", icon: "fas fa-certificate" }
+            ];
+
+            // Render Functions
+            function renderNavItems(items) {
+                return items.map(item => 
+                    `<li>
+                        <a href="${item.href}" class="text-navy hover:text-accent transition-colors flex items-center">
+                            <i class="${item.icon} mr-2"></i>
+                            ${item.label}
+                        </a>
+                    </li>`
+                ).join("");
+            }
+
+            function renderSkillsGrid(items) {
+                return items.map(skill => `
+                    <div class="skill-card rounded-2xl shadow-lg p-6 cursor-default border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br ${skill.color} flex items-center justify-center text-white mr-4 shadow-lg">
+                                <i class="${skill.icon} text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy leading-tight">${skill.category}</h3>
+                        </div>
+                        <ul class="text-gray-600 space-y-2 pl-2">
+                            ${skill.items.map(item => `
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-accent mt-1 mr-2 text-sm"></i>
+                                    <span class="text-sm">${item}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+            }
+
+            function renderEducation(items) {
+                return items.map(item => `
+                    <div class="group education-card p-6 rounded-xl hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-start">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent to-accent-dark text-white flex items-center justify-center mr-5 shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="${item.icon} text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">${item.degree}</h3>
+                            <p class="text-accent font-medium">${item.school}</p>
+                            <p class="text-sm text-gray-400 mt-2 flex items-center">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                ${item.period}
+                            </p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function renderPublications(items) {
+                return items.map(item => `
+                    <div class="publication-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent-dark text-white flex items-center justify-center flex-shrink-0">
+                            <i class="${item.icon} text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-navy mb-2">${item.title}</h3>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="font-semibold text-accent">${item.journal}</span> • ${item.date}
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <span class="text-xs text-gray-500">
+                                    <i class="fas fa-fingerprint mr-1"></i> DOI: ${item.doi}
+                                </span>
+                                <a href="${item.link}" target="_blank" class="text-xs font-semibold text-accent hover:text-accent-dark transition-colors flex items-center">
+                                    View Publication
+                                    <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function renderWorkExperience(items) {
+                return items.map((item, index) => `
+                    <div class="timeline-item relative pl-12 pb-12 ${index !== items.length - 1 ? 'border-l-2 border-gray-200' : ''}">
+                        <div class="timeline-dot absolute left-0 top-0 w-8 h-8 rounded-full bg-white border-4 border-accent transform -translate-x-4 shadow-lg"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center mr-3">
+                                    <i class="${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-navy">${item.position}</h3>
+                                    <p class="text-gray-600">
+                                        <span class="font-semibold text-accent">${item.company}</span>
+                                        <span class="mx-2">•</span>
+                                        ${item.period}
+                                    </p>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 pl-14">
+                                ${item.points.map(point => `
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-accent text-xs mt-2 mr-3"></i>
+                                        <span>${point}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function renderCertifications(items) {
+                return items.map(item => `
+                    <div class="cert-card bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-all group">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-navy to-navy-light text-white flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                                <i class="${item.icon} text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-navy text-sm leading-tight">${item.title}</h3>
+                                <p class="text-xs text-gray-500 mt-1">${item.issuer}</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                            <span class="text-xs font-medium text-gray-400">
+                                <i class="far fa-calendar-alt mr-1"></i>
+                                ${item.year}
+                            </span>
+                            ${item.link !== "#" ? `
+                                <a href="${item.link}" target="_blank" class="text-xs font-semibold text-accent hover:text-accent-dark transition-colors flex items-center">
+                                    Verify
+                                    <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function renderSocialLinks(items) {
+                return items.map(item => `
+                    <a href="${item.url}" target="_blank" class="social-link w-12 h-12 rounded-xl bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="${item.icon} text-xl"></i>
+                    </a>
+                `).join('');
+            }
+
+            function renderFooterNav(items) {
+                return items.map(item => 
+                    `<li>
+                        <a href="${item.href}" class="text-gray-400 hover:text-accent transition-colors">${item.label}</a>
+                    </li>`
+                ).join("");
+            }
+
+            // Initialize Page
+            document.addEventListener('DOMContentLoaded', function() {
+                // Hide loading screen after content loads
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loading-screen').style.display = 'none';
+                    }, 500);
+                }, 1000);
+
+                // Set current year
+                document.getElementById('current-year').textContent = new Date().getFullYear();
+
+                // Render all sections
+                document.getElementById('nav-list').innerHTML = renderNavItems(navigationItems);
+                document.getElementById('mobile-nav-list').innerHTML = renderNavItems(navigationItems);
+                document.getElementById('skills-grid').innerHTML = renderSkillsGrid(skills);
+                document.getElementById('education-grid').innerHTML = renderEducation(education);
+                
+                // Check if publications grid exists before rendering
+                const publicationsGrid = document.getElementById('publications-grid');
+                if (publicationsGrid) {
+                    publicationsGrid.innerHTML = renderPublications(publications);
+                }
+                
+                document.getElementById('timeline').innerHTML = renderWorkExperience(workExperience);
+                document.getElementById('certifications-grid').innerHTML = renderCertifications(certifications);
+                document.getElementById('social-links').innerHTML = renderSocialLinks(socialLinks);
+                document.getElementById('footer-nav').innerHTML = renderFooterNav(navigationItems);
+
+                // Mobile menu toggle
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.className = 'fas fa-bars text-xl';
+                    } else {
+                        icon.className = 'fas fa-times text-xl';
+                    }
+                });
+
+                // Smooth scrolling for navigation links
+                document.addEventListener('click', function(event) {
+                    const link = event.target.closest("a[href^='#']");
+                    if (!link) return;
+                    
+                    event.preventDefault();
+                    const targetId = link.getAttribute("href");
+                    if (targetId === "#") return;
+                    
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains("hidden")) {
+                            mobileMenu.classList.add("hidden");
+                            mobileMenuBtn.querySelector("i").className = "fas fa-bars text-xl";
+                        }
+                        
+                        // Smooth scroll to target
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: "smooth"
+                        });
+                        
+                        // Update active nav item
+                        document.querySelectorAll("nav a").forEach(navLink => {
+                            navLink.classList.remove("section-active");
+                        });
+                        link.classList.add("section-active");
+                    }
+                });
+
+                // Active section highlighting
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('nav a');
+
+                function highlightActiveSection() {
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.scrollY >= sectionTop - 100) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('section-active');
+                        if (link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('section-active');
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', highlightActiveSection);
+
+                // Back to top button
+                const backToTop = document.getElementById('back-to-top');
+                
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 500) {
+                        backToTop.style.opacity = '1';
+                        backToTop.style.visibility = 'visible';
+                    } else {
+                        backToTop.style.opacity = '0';
+                        backToTop.style.visibility = 'hidden';
+                    }
+                });
+
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+
+                // Skill cards hover effect
+                document.querySelectorAll('.skill-card').forEach(card => {
+                    const ul = card.querySelector('ul');
+                    if (ul) {
+                        card.addEventListener('mouseenter', () => {
+                            ul.style.maxHeight = ul.scrollHeight + 'px';
+                            ul.style.opacity = '1';
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            ul.style.maxHeight = '0';
+                            ul.style.opacity = '0';
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+    </html>
