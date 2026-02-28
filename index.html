@@ -1392,5 +1392,204 @@
                 });
             });
         </script>
+
+                <!-- FAQ Assistant Widget - Free, No API Needed -->
+        <div id="faq-assistant" class="fixed bottom-24 right-8 z-50" style="display: none;">
+            <div class="bg-navy-light border border-accent/30 rounded-2xl shadow-2xl w-80 md:w-96 overflow-hidden backdrop-blur-md">
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-navy to-navy-light p-4 flex justify-between items-center border-b border-accent/20">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-robot text-accent"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Ask About Paolo</h3>
+                            <p class="text-xs text-gray-400">Click a question below</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleFAQ()" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Questions List -->
+                <div class="p-4 max-h-96 overflow-y-auto" id="faq-questions">
+                    <div class="space-y-2">
+                        <!-- Question 1 -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q1')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">1</span>
+                                <span class="text-sm text-white">Who is Paolo Gio G. Espiritu?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q2')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">2</span>
+                                <span class="text-sm text-white">What are your areas of expertise?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q3')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">3</span>
+                                <span class="text-sm text-white">What certifications do you hold?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q4')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">4</span>
+                                <span class="text-sm text-white">What kind of projects have you worked on?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 (Your Q7) -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q5')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">5</span>
+                                <span class="text-sm text-white">What is your approach to ICT and digital transformation projects?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 6 (Your Q8) -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q6')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">6</span>
+                                <span class="text-sm text-white">How can I contact you for collaboration or inquiries?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 7 (Your Q6) -->
+                        <div class="faq-question bg-navy-lighter/30 hover:bg-accent/20 p-3 rounded-xl cursor-pointer transition-all border border-accent/10 hover:border-accent/30" onclick="showAnswer('q7')">
+                            <div class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mr-2 text-xs text-accent">7</span>
+                                <span class="text-sm text-white">Have you contributed to research or publications?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Answer Area -->
+                <div id="faq-answer" class="p-4 border-t border-accent/20 bg-navy/80 hidden">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-accent font-semibold text-sm" id="answer-title">Answer</h4>
+                        <button onclick="hideAnswer()" class="text-gray-400 hover:text-white text-xs">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="answer-content" class="text-sm text-gray-300 leading-relaxed max-h-60 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Toggle Button -->
+        <button id="faq-toggle" onclick="toggleFAQ()" class="fixed bottom-8 right-8 w-14 h-14 bg-accent text-navy rounded-full shadow-lg hover:bg-accent-dark hover:scale-110 transition-all z-50 flex items-center justify-center group">
+            <i class="fas fa-question text-2xl group-hover:rotate-12 transition-transform"></i>
+        </button>
+
+        <script>
+            // FAQ Assistant Functions
+            function toggleFAQ() {
+                const assistant = document.getElementById('faq-assistant');
+                const toggle = document.getElementById('faq-toggle');
+                if (assistant.style.display === 'none' || assistant.style.display === '') {
+                    assistant.style.display = 'block';
+                    toggle.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+                } else {
+                    assistant.style.display = 'none';
+                    toggle.innerHTML = '<i class="fas fa-question text-2xl"></i>';
+                }
+            }
+
+            function hideAnswer() {
+                document.getElementById('faq-answer').classList.add('hidden');
+            }
+
+            function showAnswer(question) {
+                const answerDiv = document.getElementById('faq-answer');
+                const answerContent = document.getElementById('answer-content');
+                const answerTitle = document.getElementById('answer-title');
+                
+                const answers = {
+                    q1: {
+                        title: "Who is Paolo Gio G. Espiritu?",
+                        content: "I'm a licensed Electronics Engineer (ECE) and ICT professional with a Master's in Engineering Management (MEnM). I specialize in ICT project and program coordination, cloud computing, cybersecurity foundations, data-driven reporting, and industrial automation. I have over four years of experience supporting nationwide digital transformation initiatives, capacity-building programs, and certification projects in the public sector."
+                    },
+                    
+                    q2: {
+                        title: "What are your areas of expertise?",
+                        content: "Project & Program Coordination: Planning, execution, stakeholder management, and process standardization.\n\nCloud & Cybersecurity: Google Cloud, AWS, Oracle Cloud fundamentals; Fortinet cybersecurity foundations; risk management; SOC concepts; CERT operations.\n\nData Analysis & Reporting: Spreadsheet automation, data validation, statistical reporting, and workflow optimization.\n\nTechnical Writing & Knowledge Management: SOPs, technical manuals, playbooks, and project reports.\n\nAI, Productivity & Design Tools: Canva AI, Microsoft 365, Google Workspace, and prompt engineering for content and data tasks.\n\nTraining & Capacity Building: Python programming, cloud fundamentals, cybersecurity, office productivity, STEM education, and educational technology (LEGO Robotics, Minecraft Education)."
+                    },
+                    
+                    q3: {
+                        title: "What certifications do you hold?",
+                        content: "I am certified in cloud computing, cybersecurity, productivity tools, and educational technologies, including:\n\n• Google Certified Professional Cloud Architect (GCP-CPA)\n• Google Certified Educator Level 1 & 2\n• Fortinet Certified Fundamentals in Cybersecurity (FCF)\n• Oracle Cloud Infrastructure Architect Associate\n• AWS Certified Cloud Practitioner\n• Google Certified Associate Cloud Engineer\n• Microsoft Office Specialist (Word, Excel, PowerPoint)\n• MySQL Certified Associate\n• LEGO Robotics and Minecraft Education Certified Trainer\n\nFull certification details are available on my Credly profile."
+                    },
+                    
+                    q4: {
+                        title: "What kind of projects have you worked on?",
+                        content: "I have contributed to projects such as:\n\n• Nationwide ICT competency assessment and certification programs under DICT\n• DigitalJobsPH program supporting regional digital skills initiatives\n• Technical automation and commissioning of industrial machinery\n• Facilities management planning and preventive maintenance programs\n\nI specialize in turning complex processes into organized, scalable, and data-driven solutions that support operational efficiency and informed decision-making."
+                    },
+                    
+                    q5: {
+                        title: "What is your approach to ICT and digital transformation projects?",
+                        content: "I focus on:\n\n• Structured process design for efficiency and scalability\n• Automation and data-driven reporting for decision-making\n• Stakeholder coordination to ensure alignment across teams and institutions\n• Documentation and knowledge management to support sustainable operations\n\nI aim to deliver ICT solutions that are well-documented, scalable, and aligned with organizational and national digital development goals."
+                    },
+                    
+                    q6: {
+                        title: "How can I contact you for collaboration or inquiries?",
+                        content: "You can reach me at:\n\nEmail: paologioespiritu@gmail.com\nPhone: (+63) 939 805 8059\nLinkedIn: linkedin.com/in/pgespiritu\nGitHub: github.com/pgEspiritu"
+                    },
+                    
+                    q7: {
+                        title: "Have you contributed to research or publications?",
+                        content: "Yes! I have published research focusing on ICT project management, digital transformation adoption, and cybersecurity challenges in the Philippines, including:\n\n• Project Management 4.0: Remote Collaboration in the Digital Era (May 2024)\n• Digital Transformation Adoption in LGUs: Challenges & Best Practices (Dec 2023)\n• Guiding Emerging Technology Development & Use in the Philippines (Nov 2023)\n• Cybersecurity Challenges in the Era of Digital Transformation (Nov 2023)"
+                    }
+                };
+                
+                answerTitle.textContent = answers[question].title;
+                // Convert newlines to <br> tags for better formatting
+                answerContent.innerHTML = answers[question].content.replace(/\n/g, '<br>');
+                answerDiv.classList.remove('hidden');
+                
+                // Scroll answer content to top
+                answerContent.scrollTop = 0;
+            }
+        </script>
+
+        <!-- Add this to your existing styles section in <head> -->
+        <style>
+            /* FAQ Assistant Custom Scrollbar */
+            #faq-questions::-webkit-scrollbar,
+            #answer-content::-webkit-scrollbar {
+                width: 4px;
+            }
+            #faq-questions::-webkit-scrollbar-track,
+            #answer-content::-webkit-scrollbar-track {
+                background: #112240;
+            }
+            #faq-questions::-webkit-scrollbar-thumb,
+            #answer-content::-webkit-scrollbar-thumb {
+                background: #38bdf8;
+                border-radius: 2px;
+            }
+            
+            /* FAQ Question Hover Effect */
+            .faq-question {
+                transition: all 0.3s ease;
+            }
+            .faq-question:hover {
+                transform: translateX(4px);
+            }
+            
+            /* Bullet point styling */
+            #answer-content {
+                white-space: pre-wrap;
+            }
+        </style>
     </body>
     </html>
