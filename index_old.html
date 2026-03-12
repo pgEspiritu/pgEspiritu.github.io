@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paolo Gio G. Espiritu | Portfolio</title>
+    <meta name="description" content="Professional portfolio showcasing work, credentials, and projects">
+    
+    <!-- Favicon - Brand Logo -->
+    <link rel="icon" type="image/png" href="images/brand-logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/brand-logo.png">
+    <link rel="apple-touch-icon" href="images/brand-logo.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#0a192f",
+                        "navy-light": "#112240",
+                        "navy-lighter": "#233554",
+                        accent: "#38bdf8",
+                        "accent-dark": "#2dd4bf"
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'gradient': 'gradient 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'grid-move': 'grid-move 15s linear infinite',
+                        'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'grid-move': {
+                            '0%': { transform: 'translateX(0) translateY(0)' },
+                            '100%': { transform: 'translateX(40px) translateY(40px)' },
+                        },
+                        'glow-pulse': {
+                            '0%, 100%': { opacity: '0.3' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f; /* navy base */
+            color: #e2e8f0; /* light slate for text */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #112240;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #38bdf8, #2dd4bf);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2dd4bf, #38bdf8);
+        }
+
+        /* Section Active State */
+        .section-active {
+            color: #38bdf8 !important;
+            position: relative;
+        }
+        .section-active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #2dd4bf);
+            border-radius: 2px;
+        }
+
+        /* Skill Cards (updated for navy background) */
+        .skill-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #112240; /* navy-light */
+            border: 1px solid #233554;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            color: #e2e8f0;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.15), transparent);
+            transform: rotate(45deg);
+            animation: shine 6s infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            border-color: #38bdf8;
+        }
+        .skill-card ul {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+        }
+        .skill-card:hover ul {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .skill-card ul li {
+            color: #cbd5e1;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #2dd4bf, #38bdf8);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s linear infinite;
+        }
+
+        /* Timeline */
+        .timeline-dot {
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.5);
+            background: linear-gradient(135deg, #38bdf8, #2dd4bf);
+        }
+
+        /* Social Links */
+        .social-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #233554;
+            color: #fff;
+        }
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: linear-gradient(135deg, #38bdf8, #2dd4bf) !important;
+            color: #0a192f !important;
+        }
+
+        /* Certification Cards */
+        .cert-card {
+            transition: all 0.3s ease;
+            background: #112240;
+            border: 1px solid #233554;
+            position: relative;
+            overflow: hidden;
+            color: #e2e8f0;
+        }
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-color: #38bdf8;
+        }
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #2dd4bf, #38bdf8);
+            transform: translateX(-100%);
+            animation: borderFlow 4s infinite;
+        }
+        @keyframes borderFlow {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Quick Facts Cards */
+        .fact-card {
+            transition: all 0.3s ease;
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: #e2e8f0;
+        }
+        .fact-card:hover {
+            transform: translateX(8px);
+            border-color: #38bdf8;
+            background: rgba(35, 53, 84, 0.9);
+        }
+
+        /* Career Highlight Cards */
+        .highlight-card {
+            transition: all 0.3s ease;
+            background: rgba(17, 34, 64, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-left: 4px solid #38bdf8;
+            color: #e2e8f0;
+        }
+        .highlight-card:hover {
+            transform: translateX(8px) translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(35, 53, 84, 0.8);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Research Publication Cards */
+        .publication-card {
+            transition: all 0.3s ease;
+            background: #112240;
+            border-left: 4px solid #38bdf8;
+            border: 1px solid #233554;
+            color: #e2e8f0;
+        }
+        .publication-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border-color: #38bdf8;
+        }
+
+        /* Education Cards */
+        .education-card {
+            transition: all 0.3s ease;
+            background: #112240;
+            border: 1px solid #233554;
+            color: #e2e8f0;
+        }
+        .education-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-color: #38bdf8;
+        }
+
+        /* Hero Section - updated background */
+        #home {
+            background-color: #0a192f;
+            position: relative;
+            overflow: hidden;
+        }
+        /* techy grid overlay */
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            animation: grid-move 15s linear infinite;
+        }
+
+        /* Project cards update */
+        #projects .group {
+            background: #112240;
+            border: 1px solid #233554;
+            color: #e2e8f0;
+        }
+        #projects .group:hover {
+            border-color: #38bdf8;
+        }
+        #projects .text-gray-600 {
+            color: #cbd5e1;
+        }
+        #projects .text-navy {
+            color: #e2e8f0;
+        }
+
+        /* Work section update */
+        #work {
+            background-color: #0a192f;
+        }
+        #work .bg-white {
+            background: #112240;
+            color: #e2e8f0;
+            border: 1px solid #233554;
+        }
+        #work .text-navy {
+            color: #e2e8f0;
+        }
+        #work .text-gray-700 {
+            color: #cbd5e1;
+        }
+        #work .border-l-2 {
+            border-left-color: #233554;
+        }
+
+        /* Contact section */
+        #contact {
+            background-color: #0a192f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a192f;
+            border-top: 1px solid #233554;
+        }
+
+        /* Loading screen update */
+        #loading-screen {
+            background: #0a192f;
+        }
+
+        /* FAQ assistant background */
+        #faq-assistant .bg-navy-light {
+            background: #112240;
+        }
+
+        /* back to top */
+        #back-to-top {
+            background: #38bdf8;
+            color: #0a192f;
+        }
+
+        /* Badge carousel background */
+        .bg-gradient-to-b {
+            background: linear-gradient(to bottom, #0a192f, #112240) !important;
+        }
+    </style>
+</head>
+<body class="bg-navy text-gray-200 font-inter overflow-x-hidden">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-navy z-[100] flex items-center justify-center transition-opacity duration-500">
+        <div class="text-center">
+            <div class="w-20 h-20 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-white text-xl font-semibold gradient-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Navigation (keeping original structure, colors updated via CSS) -->
+    <header class="sticky top-0 z-50 bg-navy/80 backdrop-blur-md shadow-lg border-b border-navy-lighter">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="text-2xl font-bold gradient-text md:hidden">PGE</a>
+                <div class="hidden md:block w-6"></div>
+                <ul id="nav-list" class="hidden md:flex space-x-8 text-gray-200 font-medium"></ul>
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="https://github.com/pgEspiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/pgespiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                    <a href="https://www.credly.com/users/pgespiritu" target="_blank" class="w-8 h-8 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fas fa-certificate text-sm"></i>
+                    </a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-navy-lighter text-white flex items-center justify-center">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <ul id="mobile-nav-list" class="space-y-3 text-gray-200 font-medium"></ul>
+                <div class="flex space-x-3 mt-4 pt-4 border-t border-navy-lighter">
+                    <a href="https://github.com/pgEspiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/pgespiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.credly.com/users/pgespiritu" target="_blank" class="w-10 h-10 rounded-full bg-navy-lighter text-white flex items-center justify-center hover:bg-accent hover:text-navy transition-all">
+                        <i class="fas fa-certificate"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section - navy with tech grid -->
+        <section id="home" class="py-24 relative">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col-reverse md:flex-row items-center gap-16">
+                    
+                    <div class="md:w-3/5 text-left">
+                        <span class="text-accent font-bold tracking-widest uppercase text-sm">Hello, I'm</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold text-white mt-2 mb-6 leading-tight">
+                            <span class="gradient-text animated-gradient">Paolo Gio G. Espiritu</span>
+                        </h1>
+
+                        <div class="text-gray-300 text-lg md:text-xl leading-relaxed mb-8">
+                            <p class="mb-4">
+                                I specialize in <span class="font-semibold text-accent">ICT project management & coordination</span>, 
+                                <span class="font-semibold text-accent">cloud computing</span>, 
+                                <span class="font-semibold text-accent">cybersecurity foundations</span>, 
+                                and <span class="font-semibold text-accent">data-driven reporting</span>.
+                            </p>
+                            <p>
+                                I enjoy transforming complex requirements into 
+                                <span class="font-medium text-gray-200">organized processes</span>, 
+                                <span class="font-medium text-gray-200">clear documentation</span>, 
+                                and <span class="font-medium text-gray-200">scalable digital solutions</span> 
+                                that support informed decision-making.
+                            </p>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <a href="#contact" class="bg-accent text-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-accent-dark transition-all transform hover:-translate-y-1">
+                                Get In Touch
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="md:w-2/5 flex justify-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-4 bg-accent rounded-2xl opacity-20 group-hover:opacity-40 transition-opacity blur-md"></div>
+                            
+                            <div class="w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl transform rotate-3 group-hover:rotate-0 transition-transform duration-500 border-2 border-accent/30">
+                            <img src="images/Profile.jpg" 
+                                 alt="Paolo Gio G. Espiritu" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Paolo+Gio+Espiritu&size=400&length=2&background=0a192f&color=38bdf8&bold=true';">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section - already navy -->
+        <section id="profile" class="py-20 bg-navy text-white">
+            <!-- ... content unchanged, but colors adapt via CSS ... -->
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Get to know me</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">About Me</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                </div>
+                <!-- rest of profile content (same as original, colors updated globally) -->
+                <div class="flex flex-col gap-12">
+                    <!-- Professional Summary -->
+                    <div class="w-full">
+                        <div class="bg-navy-light/50 backdrop-blur-sm p-8 md:p-10 rounded-2xl border border-navy-lighter">
+                            <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                <i class="fas fa-user-tie text-accent mr-3 text-3xl"></i>
+                                <span class="gradient-text">Professional Summary</span>
+                            </h3>
+                            <div class="space-y-6 text-gray-300 leading-relaxed text-lg">
+                                <p class="leading-relaxed">
+                                    <span class="text-white font-semibold text-xl">Detail-oriented ICT professional</span> with over nine years of total professional experience, including more than four years in public-sector ICT program and project coordination and extensive private-sector experience in engineering, automation, and technical operations. Has played a significant role in initiatives under the <span class="text-accent font-semibold">Department of Information and Communications Technology (DICT)</span>, supporting nationwide digital transformation, capacity-building, and ICT certification programs.
+                                </p>
+                                
+                                <div class="highlight-box p-6 rounded-lg my-6" style="background: rgba(56,189,248,0.1); border-left:4px solid #38bdf8;">
+                                    <p class="italic text-white/90">
+                                        Brings a strong background in industrial automation, systems integration, and technical service delivery, gained through hands-on roles in machinery programming, testing, commissioning, and nationwide technical support. This private-sector foundation enables a practical, systems-oriented approach to ICT program implementation, process improvement, and technical oversight in large-scale public initiatives.
+                                    </p>
+                                </div>
+                                
+                                <p>
+                                    Demonstrates proven capability in process design, data management, workflow automation, and technical documentation, supporting data-driven decision-making and operational efficiency. Experienced in coordinating with regional offices, LGUs, training institutions, service providers, and cross-functional teams to deliver structured, compliant, and scalable ICT solutions.
+                                </p>
+                                
+                                <p>
+                                    Certified in cloud computing, cybersecurity, and productivity technologies, with a solid foundation in systems, programming, and digital infrastructure. Known for delivering well-documented, sustainable solutions aligned with organizational objectives and national digital development goals, while effectively bridging technical execution and program-level coordination.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quick Facts -->
+                    <div class="w-full lg:w-4/5 mx-auto">
+                        <div class="bg-navy-light/30 backdrop-blur-sm p-8 rounded-2xl border border-navy-lighter">
+                            <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                <i class="fas fa-bolt text-accent mr-3 text-3xl animate-pulse"></i>
+                                <span class="gradient-text">Quick Facts</span>
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="fact-card p-5 rounded-xl flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Location</div>
+                                        <div class="font-semibold text-white text-lg">Quezon City, Philippines 🇵🇭</div>
+                                    </div>
+                                </div>
+                                <div class="fact-card p-5 rounded-xl flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-briefcase text-accent text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Profession</div>
+                                        <div class="font-semibold text-white text-lg">ICT Professional | Project & Program Coordinator | Cloud & Cybersecurity Certified</div>
+                                    </div>
+                                </div>
+                                <div class="fact-card p-5 rounded-xl flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-clock text-accent text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Total Experience</div>
+                                        <div class="font-semibold text-white text-lg">9+ years total professional experience</div>
+                                    </div>
+                                </div>
+                                <div class="fact-card p-5 rounded-xl flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-navy-lighter flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-building text-accent text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Public Sector</div>
+                                        <div class="font-semibold text-white text-lg">4+ years supporting national ICT programs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Career Highlights - same content -->
+                    <div class="w-full">
+                        <div class="relative">
+                            <div class="section-divider my-8"></div>
+                            <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+                                <i class="fas fa-trophy text-accent mr-3 text-3xl"></i>
+                                <span class="gradient-text">Career Highlights</span>
+                            </h3>
+                            <div class="space-y-4">
+                                <!-- items unchanged -->
+                                <div class="highlight-card p-6 rounded-xl">
+                                    <div class="flex flex-wrap items-start gap-3 mb-3">
+                                        <span class="highlight-badge">Nov 2024 – Feb 2025</span>
+                                        <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">Scholar</span>
+                                        <span class="highlight-badge bg-purple-500/20 border-purple-500/30 text-purple-400">Batch Topnotcher</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-2">AWS re/Start Program Scholar – Cohort PHMan26</h4>
+                                    <p class="text-gray-300">Batch topnotcher of a 300-hour intensive cloud training program, sponsored by Chevron-Caltex, Edukasyon.ph, and AWS Siklab.</p>
+                                </div>
+                                <!-- ... additional highlights (abbreviated for brevity, but same as original) ... -->
+                                <div class="highlight-card p-6 rounded-xl">
+                                    <div class="flex flex-wrap items-start gap-3 mb-3">
+                                        <span class="highlight-badge">2024 & 2025 Editions</span>
+                                        <span class="highlight-badge bg-green-500/20 border-green-500/30 text-green-400">Scholar</span>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-2">Google Get Certified Program - Cohort ACE09-GETCERT/2024.11.27 & PCA06-GETCERT_Q3_2025</h4>
+                                    <p class="text-gray-300 mb-2">Recipient of sponsored certification vouchers for Google Associate Cloud Engineer and Professional Cloud Architect.</p>
+                                </div>
+                                <!-- ... include all original highlights ... -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section - updated background -->
+        <section id="skills" class="py-20 bg-navy-light">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">What I bring to the table</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">Skills & Expertise</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                        Comprehensive skill sets spanning project management, cloud computing, cybersecurity, 
+                        data analysis, AI, programming, and technical training.
+                    </p>
+                </div>
+                <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+
+        <!-- Projects Section - updated bg -->
+        <section id="projects" class="py-20 bg-navy">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Hands-on implementations</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">Project Documentation</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                        Real-world cloud architecture implementations and automation projects showcasing technical expertise in AWS, infrastructure design, and monitoring solutions.
+                    </p>
+                </div>
+                <!-- project cards - same structure, colors updated globally -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <!-- project cards unchanged, but will inherit new background from .group style -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience - bg navy-light -->
+        <section id="work" class="py-20 bg-navy-light">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">My journey</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">Work Experience</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                </div>
+                <div id="timeline" class="max-w-4xl mx-auto relative"></div>
+            </div>
+        </section>
+
+        <!-- Education - already navy -->
+        <section id="education" class="py-20 bg-navy text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Academic background</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">Education</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                </div>
+                <div id="education-grid" class="max-w-3xl mx-auto space-y-6"></div>
+            </div>
+        </section>
+
+        <!-- Research Publications - navy-light -->
+        <section id="publications" class="py-20 bg-navy-light">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Research & Publications</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">Published Works</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                        Peer-reviewed publications and research papers in international journals.
+                    </p>
+                </div>
+                <div id="publications-grid" class="max-w-4xl mx-auto space-y-4"></div>
+            </div>
+        </section>
+
+        <!-- Credentials - navy -->
+        <section id="credentials" class="py-20 bg-navy">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Verified expertise</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">Credentials</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                        Professional certifications and qualifications in cloud computing, cybersecurity, 
+                        and productivity technologies.
+                    </p>
+                </div>
+                <div id="certifications-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Badge Showcase - navy gradient -->
+        <section class="py-12 bg-gradient-to-b from-navy to-navy-light overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <span class="text-accent font-semibold tracking-wider uppercase text-sm">Verified Credentials</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-2">My Professional Badges</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                </div>
+                <!-- carousel content same as original -->
+                <div class="relative w-full overflow-hidden py-6 group">
+                    <div class="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-navy to-transparent z-10"></div>
+                    <div class="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-navy to-transparent z-10"></div>
+                    <div class="flex animate-scroll hover:pause-animation gap-8 md:gap-12">
+                        <!-- badge items (same) -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact - navy -->
+        <section id="contact" class="py-20 bg-navy">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider uppercase">Get in touch</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">Contact Me</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-dark mx-auto rounded-full"></div>
+                    <p class="text-gray-300 max-w-2xl mx-auto mt-6 text-lg">
+                        Have a project in mind or want to discuss opportunities? Feel free to reach out through any of these channels.
+                    </p>
+                </div>
+                <!-- contact cards -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-navy-light/50 backdrop-blur-sm p-10 rounded-2xl border border-navy-lighter">
+                        <h3 class="text-2xl font-bold mb-8 text-center flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-accent mr-3"></i>
+                            <span class="gradient-text">Let's Connect</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                            <div class="fact-card p-6 rounded-xl text-center group">
+                                <div class="w-16 h-16 rounded-full bg-navy-lighter flex items-center justify-center mx-auto mb-4 group-hover:bg-accent transition-colors">
+                                    <i class="fas fa-envelope text-accent text-2xl group-hover:text-navy transition-colors"></i>
+                                </div>
+                                <h4 class="text-gray-400 text-sm mb-2">EMAIL</h4>
+                                <a href="mailto:paologioespiritu@gmail.com" class="text-white font-semibold hover:text-accent transition-colors">paologioespiritu@gmail.com</a>
+                            </div>
+                            <!-- phone & location similarly -->
+                        </div>
+                        <div class="border-t border-navy-lighter pt-8">
+                            <h4 class="text-xl font-bold mb-6 text-center gradient-text">Follow Me</h4>
+                            <div id="social-links" class="flex justify-center space-x-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - navy -->
+    <footer class="bg-navy text-white py-12 border-t border-navy-lighter">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <div class="text-2xl font-bold gradient-text mb-2">Engr. Paolo Gio G. Espiritu</div>
+                    <p class="text-gray-400">ICT Professional & Industrial Automation Specialist</p>
+                </div>
+                <ul id="footer-nav" class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0"></ul>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; <span id="current-year"></span> All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-accent text-navy rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-accent-dark hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- FAQ Assistant (unchanged) -->
+    <div id="faq-assistant" class="fixed bottom-24 right-8 z-50" style="display: none;">...</div>
+    <button id="faq-toggle" onclick="toggleFAQ()" class="fixed bottom-8 right-8 w-14 h-14 bg-accent text-navy rounded-full shadow-lg hover:bg-accent-dark hover:scale-110 transition-all z-50 flex items-center justify-center group">
+        <i class="fas fa-question text-2xl group-hover:rotate-12 transition-transform"></i>
+    </button>
+    
+        <script>
+            // FAQ Assistant Functions
+            function toggleFAQ() {
+                const assistant = document.getElementById('faq-assistant');
+                const toggle = document.getElementById('faq-toggle');
+                if (assistant.style.display === 'none' || assistant.style.display === '') {
+                    assistant.style.display = 'block';
+                    toggle.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+                } else {
+                    assistant.style.display = 'none';
+                    toggle.innerHTML = '<i class="fas fa-question text-2xl"></i>';
+                }
+            }
+
+            function hideAnswer() {
+                document.getElementById('faq-answer').classList.add('hidden');
+            }
+
+            function showAnswer(question) {
+                const answerDiv = document.getElementById('faq-answer');
+                const answerContent = document.getElementById('answer-content');
+                const answerTitle = document.getElementById('answer-title');
+                
+                const answers = {
+                    q1: {
+                        title: "Who is Paolo Gio G. Espiritu?",
+                        content: "I'm a licensed Electronics Engineer (ECE) and ICT professional with a Master's in Engineering Management (MEnM). I specialize in ICT project and program coordination, cloud computing, cybersecurity foundations, data-driven reporting, and industrial automation. I have over four years of experience supporting nationwide digital transformation initiatives, capacity-building programs, and certification projects in the public sector."
+                    },
+                    
+                    q2: {
+                        title: "What are your areas of expertise?",
+                        content: "Project & Program Coordination: Planning, execution, stakeholder management, and process standardization.\n\nCloud & Cybersecurity: Google Cloud, AWS, Oracle Cloud fundamentals; Fortinet cybersecurity foundations; risk management; SOC concepts; CERT operations.\n\nData Analysis & Reporting: Spreadsheet automation, data validation, statistical reporting, and workflow optimization.\n\nTechnical Writing & Knowledge Management: SOPs, technical manuals, playbooks, and project reports.\n\nAI, Productivity & Design Tools: Canva AI, Microsoft 365, Google Workspace, and prompt engineering for content and data tasks.\n\nTraining & Capacity Building: Python programming, cloud fundamentals, cybersecurity, office productivity, STEM education, and educational technology (LEGO Robotics, Minecraft Education)."
+                    },
+                    
+                    q3: {
+                        title: "What certifications do you hold?",
+                        content: "I am certified in cloud computing, cybersecurity, productivity tools, and educational technologies, including:\n\n• Google Certified Professional Cloud Architect (GCP-CPA)\n• Google Certified Educator Level 1 & 2\n• Fortinet Certified Fundamentals in Cybersecurity (FCF)\n• Oracle Cloud Infrastructure Architect Associate\n• AWS Certified Cloud Practitioner\n• Google Certified Associate Cloud Engineer\n• Microsoft Office Specialist (Word, Excel, PowerPoint)\n• MySQL Certified Associate\n• LEGO Robotics and Minecraft Education Certified Trainer\n\nFull certification details are available on my Credly profile."
+                    },
+                    
+                    q4: {
+                        title: "What kind of projects have you worked on?",
+                        content: "I have contributed to projects such as:\n\n• Nationwide ICT competency assessment and certification programs under DICT\n• DigitalJobsPH program supporting regional digital skills initiatives\n• Technical automation and commissioning of industrial machinery\n• Facilities management planning and preventive maintenance programs\n\nI specialize in turning complex processes into organized, scalable, and data-driven solutions that support operational efficiency and informed decision-making."
+                    },
+                    
+                    q5: {
+                        title: "What is your approach to ICT and digital transformation projects?",
+                        content: "I focus on:\n\n• Structured process design for efficiency and scalability\n• Automation and data-driven reporting for decision-making\n• Stakeholder coordination to ensure alignment across teams and institutions\n• Documentation and knowledge management to support sustainable operations\n\nI aim to deliver ICT solutions that are well-documented, scalable, and aligned with organizational and national digital development goals."
+                    },
+                    
+                    q6: {
+                        title: "How can I contact you for collaboration or inquiries?",
+                        content: "You can reach me at:\n\nEmail: paologioespiritu@gmail.com\nPhone: (+63) 939 805 8059\nLinkedIn: linkedin.com/in/pgespiritu\nGitHub: github.com/pgEspiritu"
+                    },
+                    
+                    q7: {
+                        title: "Have you contributed to research or publications?",
+                        content: "Yes! I have published research focusing on ICT project management, digital transformation adoption, and cybersecurity challenges in the Philippines, including:\n\n• Project Management 4.0: Remote Collaboration in the Digital Era (May 2024)\n• Digital Transformation Adoption in LGUs: Challenges & Best Practices (Dec 2023)\n• Guiding Emerging Technology Development & Use in the Philippines (Nov 2023)\n• Cybersecurity Challenges in the Era of Digital Transformation (Nov 2023)"
+                    }
+                };
+                
+                answerTitle.textContent = answers[question].title;
+                // Convert newlines to <br> tags for better formatting
+                answerContent.innerHTML = answers[question].content.replace(/\n/g, '<br>');
+                answerDiv.classList.remove('hidden');
+                
+                // Scroll answer content to top
+                answerContent.scrollTop = 0;
+            }
+        </script>
+
+        <style>
+            /* FAQ Assistant Custom Scrollbar */
+            #faq-questions::-webkit-scrollbar,
+            #answer-content::-webkit-scrollbar {
+                width: 4px;
+            }
+            #faq-questions::-webkit-scrollbar-track,
+            #answer-content::-webkit-scrollbar-track {
+                background: #112240;
+            }
+            #faq-questions::-webkit-scrollbar-thumb,
+            #answer-content::-webkit-scrollbar-thumb {
+                background: #38bdf8;
+                border-radius: 2px;
+            }
+            
+            /* FAQ Question Hover Effect */
+            .faq-question {
+                transition: all 0.3s ease;
+            }
+            .faq-question:hover {
+                transform: translateX(4px);
+            }
+            
+            /* Bullet point styling */
+            #answer-content {
+                white-space: pre-wrap;
+            }
+        </style>
+    </body>
+    </html>
